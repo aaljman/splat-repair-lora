@@ -1,0 +1,36 @@
+{
+ "id": "y22",
+ "setting": "dusty attic bedroom under the roof with an old carved bed, suitcases, an old television and a spinning wheel, dim late-afternoon light through the dust",
+ "move": {
+  "orbit_deg": 30.0,
+  "rise": 1.0,
+  "dolly": -1.0,
+  "pivot": [
+   -0.800000011920929,
+   4.5,
+   0.699999988079071
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 26.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 26.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.4,
+  "splat_vs_photo_at_A_psnr": 37.52,
+  "splat_vs_truth_seen_psnr": 24.27,
+  "splat_vs_truth_unseen_psnr": 17.65,
+  "fake_vs_truth_seen_psnr": 29.84,
+  "fake_vs_truth_unseen_psnr": 17.08,
+  "unseen_frac": 0.523
+ }
+}

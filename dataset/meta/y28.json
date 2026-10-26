@@ -1,0 +1,36 @@
+{
+ "id": "y28",
+ "setting": "back garden yard of a block of flats beside a lock-up garage, bins, bags, a hand truck and a gnome, overcast midday",
+ "move": {
+  "orbit_deg": -55.0,
+  "rise": 0.0,
+  "dolly": 1.2,
+  "pivot": [
+   0.4000000059604645,
+   3.5999999046325684,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 28.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 28.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.0,
+  "splat_vs_photo_at_A_psnr": 34.43,
+  "splat_vs_truth_seen_psnr": 18.88,
+  "splat_vs_truth_unseen_psnr": 17.45,
+  "fake_vs_truth_seen_psnr": 23.25,
+  "fake_vs_truth_unseen_psnr": 17.49,
+  "unseen_frac": 0.416
+ }
+}

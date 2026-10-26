@@ -1,0 +1,36 @@
+{
+ "id": "y23",
+ "setting": "small pantry off a kitchen: an old farmhouse dresser of tins and jars on the back wall, a metal work table with onions and a brass pot, a low bench with a crate, one bare bulb on a pull chain, evening",
+ "move": {
+  "orbit_deg": 25.0,
+  "rise": 0.25,
+  "dolly": 0.0,
+  "pivot": [
+   0.0,
+   3.5999999046325684,
+   1.2999999523162842
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 32.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 32.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 5.5,
+  "splat_vs_photo_at_A_psnr": 35.49,
+  "splat_vs_truth_seen_psnr": 20.93,
+  "splat_vs_truth_unseen_psnr": 20.43,
+  "fake_vs_truth_seen_psnr": 21.89,
+  "fake_vs_truth_unseen_psnr": 19.52,
+  "unseen_frac": 0.256
+ }
+}

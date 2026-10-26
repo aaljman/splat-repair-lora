@@ -1,0 +1,36 @@
+{
+ "id": "y15",
+ "setting": "warehouse storage bay: steel shelving, wooden crates and plastic containers, stacked crates and a tool cart on a concrete floor under high industrial lamps, cool neutral light, daytime",
+ "move": {
+  "orbit_deg": -15.0,
+  "rise": 0.7,
+  "dolly": 0.0,
+  "pivot": [
+   0.0,
+   5.0,
+   1.100000023841858
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 35.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 35.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.1,
+  "splat_vs_photo_at_A_psnr": 34.1,
+  "splat_vs_truth_seen_psnr": 20.33,
+  "splat_vs_truth_unseen_psnr": 17.94,
+  "fake_vs_truth_seen_psnr": 27.75,
+  "fake_vs_truth_unseen_psnr": 16.16,
+  "unseen_frac": 0.265
+ }
+}

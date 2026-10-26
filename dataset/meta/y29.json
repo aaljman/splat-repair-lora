@@ -1,0 +1,36 @@
+{
+ "id": "y29",
+ "setting": "back alley behind a city block, bins, crates, pipes and a street lamp, dusk",
+ "move": {
+  "orbit_deg": 12.0,
+  "rise": 0.5,
+  "dolly": 0.3,
+  "pivot": [
+   0.20000000298023224,
+   3.5999999046325684,
+   0.699999988079071
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 50.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 50.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 55.9,
+  "splat_render_s": 5.7,
+  "splat_vs_photo_at_A_psnr": 34.18,
+  "splat_vs_truth_seen_psnr": 19.86,
+  "splat_vs_truth_unseen_psnr": 19.33,
+  "fake_vs_truth_seen_psnr": 27.12,
+  "fake_vs_truth_unseen_psnr": 17.32,
+  "unseen_frac": 0.337
+ }
+}

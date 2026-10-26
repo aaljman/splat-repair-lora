@@ -1,0 +1,36 @@
+{
+ "id": "y12",
+ "setting": "painter's art studio, late morning, bright cool north light from the left, easel, work table with jars and paint tins",
+ "move": {
+  "orbit_deg": 25.0,
+  "rise": -0.3,
+  "dolly": 1.2,
+  "pivot": [
+   0.0,
+   3.9000000953674316,
+   0.949999988079071
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 45.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 45.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 323.0,
+  "splat_vs_photo_at_A_psnr": 34.11,
+  "splat_vs_truth_seen_psnr": 17.07,
+  "splat_vs_truth_unseen_psnr": 16.06,
+  "fake_vs_truth_seen_psnr": 25.92,
+  "fake_vs_truth_unseen_psnr": 14.97,
+  "unseen_frac": 0.253
+ }
+}

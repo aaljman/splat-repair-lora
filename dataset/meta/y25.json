@@ -1,0 +1,36 @@
+{
+ "id": "y25",
+ "setting": "smugglers' cellar under a harbour tavern, rough stone walls, stacked contraband crates with guns and ammunition, sea chests and an old ship's cannon, a tavern table with lantern and bottles, lantern light at night",
+ "move": {
+  "orbit_deg": 50.0,
+  "rise": -0.5,
+  "dolly": 0.0,
+  "pivot": [
+   0.30000001192092896,
+   3.5999999046325684,
+   0.4000000059604645
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 18.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 18.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 33.1,
+  "splat_render_s": 6.9,
+  "splat_vs_photo_at_A_psnr": 37.1,
+  "splat_vs_truth_seen_psnr": 23.46,
+  "splat_vs_truth_unseen_psnr": 21.97,
+  "fake_vs_truth_seen_psnr": 27.38,
+  "fake_vs_truth_unseen_psnr": 16.01,
+  "unseen_frac": 0.543
+ }
+}

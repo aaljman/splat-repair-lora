@@ -1,0 +1,36 @@
+{
+ "id": "y33",
+ "setting": "construction yard with plastic drums, a generator, gas bottles, crates, plastic pipes and containers behind a chain-link fence, overcast midday",
+ "move": {
+  "orbit_deg": 30.0,
+  "rise": 0.7,
+  "dolly": 0.0,
+  "pivot": [
+   0.0,
+   6.0,
+   0.4000000059604645
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 60.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 60.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 56.5,
+  "splat_render_s": 5.5,
+  "splat_vs_photo_at_A_psnr": 32.25,
+  "splat_vs_truth_seen_psnr": 16.03,
+  "splat_vs_truth_unseen_psnr": 13.9,
+  "fake_vs_truth_seen_psnr": 22.94,
+  "fake_vs_truth_unseen_psnr": 13.54,
+  "unseen_frac": 0.477
+ }
+}

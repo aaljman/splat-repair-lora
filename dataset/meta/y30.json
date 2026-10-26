@@ -1,0 +1,36 @@
+{
+ "id": "y30",
+ "setting": "pine forest clearing with fallen logs, stumps, roots and rocks, soft morning light",
+ "move": {
+  "orbit_deg": 40.0,
+  "rise": -0.3,
+  "dolly": 0.0,
+  "pivot": [
+   0.0,
+   5.5,
+   0.6000000238418579
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 22.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 22.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 54.9,
+  "splat_render_s": 4.6,
+  "splat_vs_photo_at_A_psnr": 31.9,
+  "splat_vs_truth_seen_psnr": 18.25,
+  "splat_vs_truth_unseen_psnr": 18.45,
+  "fake_vs_truth_seen_psnr": 23.29,
+  "fake_vs_truth_unseen_psnr": 19.29,
+  "unseen_frac": 0.488
+ }
+}

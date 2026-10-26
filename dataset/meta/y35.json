@@ -1,0 +1,36 @@
+{
+ "id": "y35",
+ "setting": "mossy woodland trail with ferns, mossy rock banks and fallen trunks, midday dappled light",
+ "move": {
+  "orbit_deg": -35.0,
+  "rise": 0.0,
+  "dolly": -0.5,
+  "pivot": [
+   0.20000000298023224,
+   5.0,
+   0.5
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 32.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 32.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.3,
+  "splat_vs_photo_at_A_psnr": 33.26,
+  "splat_vs_truth_seen_psnr": 16.6,
+  "splat_vs_truth_unseen_psnr": 16.56,
+  "fake_vs_truth_seen_psnr": 20.73,
+  "fake_vs_truth_unseen_psnr": 16.63,
+  "unseen_frac": 0.567
+ }
+}

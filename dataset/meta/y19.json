@@ -1,0 +1,36 @@
+{
+ "id": "y19",
+ "setting": "chinese tea room: lacquered tea table with two carved armchairs, folding screen, display cabinet and vases, warm lamplight, late afternoon",
+ "move": {
+  "orbit_deg": 40.0,
+  "rise": 0.0,
+  "dolly": -0.5,
+  "pivot": [
+   0.0,
+   4.199999809265137,
+   1.5
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 40.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 40.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 6.2,
+  "splat_vs_photo_at_A_psnr": 37.47,
+  "splat_vs_truth_seen_psnr": 19.29,
+  "splat_vs_truth_unseen_psnr": 18.29,
+  "fake_vs_truth_seen_psnr": 24.73,
+  "fake_vs_truth_unseen_psnr": 16.99,
+  "unseen_frac": 0.5
+ }
+}

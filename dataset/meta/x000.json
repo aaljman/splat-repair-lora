@@ -1,0 +1,36 @@
+{
+ "id": "x000",
+ "setting": "farmhouse dining room, warm evening lamps",
+ "move": {
+  "orbit_deg": 38.0,
+  "rise": 0.45,
+  "dolly": 0.4,
+  "pivot": [
+   0.0,
+   3.700000047683716,
+   0.800000011920929
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 24.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 24.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.6,
+  "splat_render_s": 10.7,
+  "splat_vs_photo_at_A_psnr": 35.96,
+  "splat_vs_truth_seen_psnr": 20.77,
+  "splat_vs_truth_unseen_psnr": 18.04,
+  "fake_vs_truth_seen_psnr": 25.33,
+  "fake_vs_truth_unseen_psnr": 17.0,
+  "unseen_frac": 0.336
+ }
+}

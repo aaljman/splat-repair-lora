@@ -1,0 +1,36 @@
+{
+ "id": "y08",
+ "setting": "home garage workshop with tool boxes, jerrycans and a work cart under harsh overhead tube light, daytime",
+ "move": {
+  "orbit_deg": 40.0,
+  "rise": 0.0,
+  "dolly": 0.9,
+  "pivot": [
+   0.6000000238418579,
+   4.599999904632568,
+   1.100000023841858
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 30.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 30.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.1,
+  "splat_vs_photo_at_A_psnr": 35.73,
+  "splat_vs_truth_seen_psnr": 19.46,
+  "splat_vs_truth_unseen_psnr": 14.82,
+  "fake_vs_truth_seen_psnr": 22.15,
+  "fake_vs_truth_unseen_psnr": 13.93,
+  "unseen_frac": 0.28
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "id": "t3",
+ "setting": "TEST 3/5: compact living room with a coffee table, two lounge chairs, a bookshelf and a plant, late afternoon",
+ "move": {
+  "orbit_deg": -35.0,
+  "rise": 0.5,
+  "dolly": 0.4,
+  "pivot": [
+   0.0,
+   3.5999999046325684,
+   0.6000000238418579
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 28.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 28.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 54.1,
+  "splat_render_s": 5.9,
+  "splat_vs_photo_at_A_psnr": 33.42,
+  "splat_vs_truth_seen_psnr": 18.24,
+  "splat_vs_truth_unseen_psnr": 17.86,
+  "fake_vs_truth_seen_psnr": 23.09,
+  "fake_vs_truth_unseen_psnr": 16.0,
+  "unseen_frac": 0.338
+ }
+}

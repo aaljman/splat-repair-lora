@@ -1,0 +1,36 @@
+{
+ "id": "y31",
+ "setting": "dry karoo desert scrub with quiver trees, succulents, dead branches and rocks under a harsh noon sun",
+ "move": {
+  "orbit_deg": -25.0,
+  "rise": 1.0,
+  "dolly": 0.0,
+  "pivot": [
+   0.4000000059604645,
+   3.0,
+   0.5
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 40.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 40.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 56.5,
+  "splat_render_s": 4.9,
+  "splat_vs_photo_at_A_psnr": 30.82,
+  "splat_vs_truth_seen_psnr": 18.39,
+  "splat_vs_truth_unseen_psnr": 14.91,
+  "fake_vs_truth_seen_psnr": 24.94,
+  "fake_vs_truth_unseen_psnr": 14.23,
+  "unseen_frac": 0.411
+ }
+}

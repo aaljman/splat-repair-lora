@@ -1,0 +1,36 @@
+{
+ "id": "y40",
+ "setting": "rocky quarry floor in dry scrub country, hazy early morning light, boulders, idle machinery, gas bottles and fuel cans",
+ "move": {
+  "orbit_deg": 12.0,
+  "rise": 1.0,
+  "dolly": 0.9,
+  "pivot": [
+   0.0,
+   2.5,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 28.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 28.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.0,
+  "splat_vs_photo_at_A_psnr": 37.59,
+  "splat_vs_truth_seen_psnr": 21.93,
+  "splat_vs_truth_unseen_psnr": 20.02,
+  "fake_vs_truth_seen_psnr": 29.29,
+  "fake_vs_truth_unseen_psnr": 18.93,
+  "unseen_frac": 0.282
+ }
+}

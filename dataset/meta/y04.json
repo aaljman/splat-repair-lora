@@ -1,0 +1,36 @@
+{
+ "id": "y04",
+ "setting": "child's bedroom: small bed against the back wall, toy chest, drawers, school desk and toys, soft afternoon light from the right",
+ "move": {
+  "orbit_deg": -15.0,
+  "rise": 1.0,
+  "dolly": 1.2,
+  "pivot": [
+   0.15000000596046448,
+   3.049999952316284,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 28.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 28.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.5,
+  "splat_vs_photo_at_A_psnr": 34.04,
+  "splat_vs_truth_seen_psnr": 18.24,
+  "splat_vs_truth_unseen_psnr": 18.1,
+  "fake_vs_truth_seen_psnr": 23.49,
+  "fake_vs_truth_unseen_psnr": 12.38,
+  "unseen_frac": 0.245
+ }
+}

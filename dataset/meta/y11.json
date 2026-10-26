@@ -1,0 +1,36 @@
+{
+ "id": "y11",
+ "setting": "storage and cleaning-supplies room: steel shelving of bottles and boxes, a rolling cart with bottles, a wet-floor sign, a crate and a bucket; flat white ceiling light, daytime",
+ "move": {
+  "orbit_deg": 20.0,
+  "rise": 0.5,
+  "dolly": -0.2,
+  "pivot": [
+   0.0,
+   4.599999904632568,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 32.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 32.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.6,
+  "splat_vs_photo_at_A_psnr": 33.3,
+  "splat_vs_truth_seen_psnr": 18.11,
+  "splat_vs_truth_unseen_psnr": 15.69,
+  "fake_vs_truth_seen_psnr": 25.71,
+  "fake_vs_truth_unseen_psnr": 13.24,
+  "unseen_frac": 0.428
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "id": "t5",
+ "setting": "TEST 5/5 (hardest): cluttered workshop lab packed with instruments on a desk, a cart and a side table, drill presses on the floor, mixed cool and warm light",
+ "move": {
+  "orbit_deg": 55.0,
+  "rise": 1.0,
+  "dolly": 0.8,
+  "pivot": [
+   0.0,
+   5.0,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 20.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 20.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 55.9,
+  "splat_render_s": 4.9,
+  "splat_vs_photo_at_A_psnr": 33.92,
+  "splat_vs_truth_seen_psnr": 21.2,
+  "splat_vs_truth_unseen_psnr": 18.61,
+  "fake_vs_truth_seen_psnr": 23.86,
+  "fake_vs_truth_unseen_psnr": 17.64,
+  "unseen_frac": 0.383
+ }
+}

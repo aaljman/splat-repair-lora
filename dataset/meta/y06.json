@@ -1,0 +1,36 @@
+{
+ "id": "y06",
+ "setting": "stone wine cellar: vaulted rough-stone room with oak barrels, wooden crates and a tasting table, dim warm lamps, night",
+ "move": {
+  "orbit_deg": -55.0,
+  "rise": 0.7,
+  "dolly": -0.6,
+  "pivot": [
+   1.0,
+   3.700000047683716,
+   0.800000011920929
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 22.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 22.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 4.9,
+  "splat_vs_photo_at_A_psnr": 36.18,
+  "splat_vs_truth_seen_psnr": 20.92,
+  "splat_vs_truth_unseen_psnr": 21.1,
+  "fake_vs_truth_seen_psnr": 25.86,
+  "fake_vs_truth_unseen_psnr": 17.77,
+  "unseen_frac": 0.592
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "id": "y13",
+ "setting": "gothic mansion dining hall, round dark table with carved armchairs and sideboard, warm candle light at night",
+ "move": {
+  "orbit_deg": -35.0,
+  "rise": 1.0,
+  "dolly": 0.3,
+  "pivot": [
+   0.0,
+   5.0,
+   1.399999976158142
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 18.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 18.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.7,
+  "splat_vs_photo_at_A_psnr": 34.74,
+  "splat_vs_truth_seen_psnr": 20.03,
+  "splat_vs_truth_unseen_psnr": 20.56,
+  "fake_vs_truth_seen_psnr": 23.62,
+  "fake_vs_truth_unseen_psnr": 16.08,
+  "unseen_frac": 0.272
+ }
+}

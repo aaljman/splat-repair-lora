@@ -1,0 +1,36 @@
+{
+ "id": "y07",
+ "setting": "antique shop crowded with curiosities on tables and shelves, warm spotlights, late afternoon",
+ "move": {
+  "orbit_deg": 12.0,
+  "rise": -0.5,
+  "dolly": 0.0,
+  "pivot": [
+   0.20000000298023224,
+   3.799999952316284,
+   1.0
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 40.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 40.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 6.1,
+  "splat_vs_photo_at_A_psnr": 33.88,
+  "splat_vs_truth_seen_psnr": 20.26,
+  "splat_vs_truth_unseen_psnr": 21.98,
+  "fake_vs_truth_seen_psnr": 26.98,
+  "fake_vs_truth_unseen_psnr": 20.63,
+  "unseen_frac": 0.355
+ }
+}

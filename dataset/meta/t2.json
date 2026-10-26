@@ -1,0 +1,36 @@
+{
+ "id": "t2",
+ "setting": "TEST 2/5: a low wooden table with a few small curios in a small blue study, warm lamp",
+ "move": {
+  "orbit_deg": 25.0,
+  "rise": 0.3,
+  "dolly": 0.2,
+  "pivot": [
+   0.0,
+   2.6500000953674316,
+   0.44999998807907104
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 40.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 40.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 54.7,
+  "splat_render_s": 6.2,
+  "splat_vs_photo_at_A_psnr": 37.02,
+  "splat_vs_truth_seen_psnr": 20.58,
+  "splat_vs_truth_unseen_psnr": 18.78,
+  "fake_vs_truth_seen_psnr": 29.22,
+  "fake_vs_truth_unseen_psnr": 19.33,
+  "unseen_frac": 0.344
+ }
+}

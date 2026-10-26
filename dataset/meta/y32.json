@@ -1,0 +1,36 @@
+{
+ "id": "y32",
+ "setting": "rocky beach cove at golden hour: driftwood, roots and broken barrels on damp sand below a rock headland, a fisherman's boots, hat and bucket, low warm sun, late afternoon",
+ "move": {
+  "orbit_deg": -70.0,
+  "rise": 0.25,
+  "dolly": 0.9,
+  "pivot": [
+   0.6000000238418579,
+   3.0,
+   1.0
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 30.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 30.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 55.9,
+  "splat_render_s": 4.5,
+  "splat_vs_photo_at_A_psnr": 34.84,
+  "splat_vs_truth_seen_psnr": 17.48,
+  "splat_vs_truth_unseen_psnr": 17.15,
+  "fake_vs_truth_seen_psnr": 23.17,
+  "fake_vs_truth_unseen_psnr": 15.68,
+  "unseen_frac": 0.534
+ }
+}

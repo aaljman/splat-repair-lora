@@ -1,0 +1,36 @@
+{
+ "id": "y05",
+ "setting": "utility washroom with tiled walls, a steel cleaning cart and bottles, a mop bucket and a stool, cool fluorescent light, daytime",
+ "move": {
+  "orbit_deg": 40.0,
+  "rise": 0.25,
+  "dolly": 0.3,
+  "pivot": [
+   0.0,
+   3.5999999046325684,
+   0.6000000238418579
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 50.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 50.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 33.0,
+  "splat_render_s": 5.7,
+  "splat_vs_photo_at_A_psnr": 37.25,
+  "splat_vs_truth_seen_psnr": 19.67,
+  "splat_vs_truth_unseen_psnr": 12.88,
+  "fake_vs_truth_seen_psnr": 26.84,
+  "fake_vs_truth_unseen_psnr": 10.38,
+  "unseen_frac": 0.267
+ }
+}

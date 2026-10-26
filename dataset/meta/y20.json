@@ -1,0 +1,36 @@
+{
+ "id": "y20",
+ "setting": "old barbershop: barber chair before a mirror on the side wall, worn cabinet of tonics and cleaners, waiting bench, mixed cool fluorescent and warm lamp light, afternoon",
+ "move": {
+  "orbit_deg": -25.0,
+  "rise": 0.5,
+  "dolly": 0.6,
+  "pivot": [
+   1.0,
+   4.0,
+   1.2000000476837158
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 30.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 30.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.6,
+  "splat_render_s": 6.0,
+  "splat_vs_photo_at_A_psnr": 35.95,
+  "splat_vs_truth_seen_psnr": 15.72,
+  "splat_vs_truth_unseen_psnr": 14.38,
+  "fake_vs_truth_seen_psnr": 18.11,
+  "fake_vs_truth_unseen_psnr": 15.1,
+  "unseen_frac": 0.167
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "id": "y17",
+ "setting": "victorian sitting room, late evening, warm fire glow from the stove and a lamp",
+ "move": {
+  "orbit_deg": -55.0,
+  "rise": 0.0,
+  "dolly": 0.9,
+  "pivot": [
+   0.0,
+   4.400000095367432,
+   0.75
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 50.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 50.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 33.1,
+  "splat_render_s": 15.5,
+  "splat_vs_photo_at_A_psnr": 36.09,
+  "splat_vs_truth_seen_psnr": 13.23,
+  "splat_vs_truth_unseen_psnr": 13.77,
+  "fake_vs_truth_seen_psnr": 15.81,
+  "fake_vs_truth_unseen_psnr": 14.2,
+  "unseen_frac": 0.6
+ }
+}

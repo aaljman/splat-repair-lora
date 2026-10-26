@@ -1,0 +1,36 @@
+{
+ "id": "y10",
+ "setting": "old library reading room, bookshelves and armchairs around a reading table, low warm lamps, late afternoon",
+ "move": {
+  "orbit_deg": -70.0,
+  "rise": 0.0,
+  "dolly": 0.6,
+  "pivot": [
+   0.0,
+   4.199999809265137,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 26.0,
+   "width": 880,
+   "height": 1184
+  },
+  "B": {
+   "lens_mm": 26.0,
+   "width": 880,
+   "height": 1184
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.8,
+  "splat_vs_photo_at_A_psnr": 35.45,
+  "splat_vs_truth_seen_psnr": 19.1,
+  "splat_vs_truth_unseen_psnr": 15.36,
+  "fake_vs_truth_seen_psnr": 21.88,
+  "fake_vs_truth_unseen_psnr": 14.07,
+  "unseen_frac": 0.392
+ }
+}

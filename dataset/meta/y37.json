@@ -1,0 +1,36 @@
+{
+ "id": "y37",
+ "setting": "cobblestone courtyard behind an apartment block: a lock-up shutter door, an air-con unit, a cafe table set, a utility box, planters, a small tree and a fire hydrant, evening",
+ "move": {
+  "orbit_deg": -25.0,
+  "rise": 0.0,
+  "dolly": 0.3,
+  "pivot": [
+   0.6000000238418579,
+   1.5,
+   0.6000000238418579
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 18.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 18.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.7,
+  "splat_vs_photo_at_A_psnr": 33.88,
+  "splat_vs_truth_seen_psnr": 18.86,
+  "splat_vs_truth_unseen_psnr": 19.99,
+  "fake_vs_truth_seen_psnr": 26.14,
+  "fake_vs_truth_unseen_psnr": 20.53,
+  "unseen_frac": 0.262
+ }
+}

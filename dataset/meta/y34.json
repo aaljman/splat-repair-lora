@@ -1,0 +1,36 @@
+{
+ "id": "y34",
+ "setting": "back patio of a house, outdoor breakfast table with plastic chairs, a stone fire pit, lanterns and clay pots, late afternoon",
+ "move": {
+  "orbit_deg": 25.0,
+  "rise": -0.5,
+  "dolly": 0.6,
+  "pivot": [
+   0.10000000149011612,
+   0.4000000059604645,
+   0.550000011920929
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 26.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 26.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.9,
+  "splat_vs_photo_at_A_psnr": 33.26,
+  "splat_vs_truth_seen_psnr": 17.25,
+  "splat_vs_truth_unseen_psnr": 16.78,
+  "fake_vs_truth_seen_psnr": 20.3,
+  "fake_vs_truth_unseen_psnr": 15.88,
+  "unseen_frac": 0.186
+ }
+}

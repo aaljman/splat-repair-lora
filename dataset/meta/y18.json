@@ -1,0 +1,36 @@
+{
+ "id": "y18",
+ "setting": "modern minimalist living room, daytime under soft even ceiling light",
+ "move": {
+  "orbit_deg": 12.0,
+  "rise": 1.3,
+  "dolly": 0.6,
+  "pivot": [
+   0.0,
+   3.0,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 22.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 22.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 5.7,
+  "splat_vs_photo_at_A_psnr": 36.16,
+  "splat_vs_truth_seen_psnr": 20.37,
+  "splat_vs_truth_unseen_psnr": 17.57,
+  "fake_vs_truth_seen_psnr": 26.12,
+  "fake_vs_truth_unseen_psnr": 16.4,
+  "unseen_frac": 0.411
+ }
+}

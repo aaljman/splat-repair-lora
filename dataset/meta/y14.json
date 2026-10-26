@@ -1,0 +1,36 @@
+{
+ "id": "y14",
+ "setting": "lighthouse keeper's quarters on a cold sea morning: desk, daybed, radio, lamps, crates, stove",
+ "move": {
+  "orbit_deg": 50.0,
+  "rise": 0.25,
+  "dolly": -1.0,
+  "pivot": [
+   -0.6000000238418579,
+   4.199999809265137,
+   1.0
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 24.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 24.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.5,
+  "splat_render_s": 4.8,
+  "splat_vs_photo_at_A_psnr": 35.86,
+  "splat_vs_truth_seen_psnr": 20.97,
+  "splat_vs_truth_unseen_psnr": 16.06,
+  "fake_vs_truth_seen_psnr": 25.7,
+  "fake_vs_truth_unseen_psnr": 17.84,
+  "unseen_frac": 0.611
+ }
+}

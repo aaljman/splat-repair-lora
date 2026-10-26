@@ -1,0 +1,36 @@
+{
+ "id": "y16",
+ "setting": "indoor plant room in a glazed-roof conservatory: potted plants, clay planters and a potting bench, a stool and a watering can on terracotta tiles, bright diffuse daylight, midday",
+ "move": {
+  "orbit_deg": 65.0,
+  "rise": -0.5,
+  "dolly": 0.9,
+  "pivot": [
+   0.20000000298023224,
+   4.599999904632568,
+   0.8999999761581421
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 28.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 28.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.8,
+  "splat_vs_photo_at_A_psnr": 33.37,
+  "splat_vs_truth_seen_psnr": 17.5,
+  "splat_vs_truth_unseen_psnr": 16.74,
+  "fake_vs_truth_seen_psnr": 20.07,
+  "fake_vs_truth_unseen_psnr": 15.32,
+  "unseen_frac": 0.447
+ }
+}

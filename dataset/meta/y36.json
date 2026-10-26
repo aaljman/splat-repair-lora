@@ -1,0 +1,36 @@
+{
+ "id": "y36",
+ "setting": "city park corner: paved square with a picnic table, a folding cafe set, a pair of litter bins, flower beds, trees and street lamps, midday sun",
+ "move": {
+  "orbit_deg": 50.0,
+  "rise": 1.3,
+  "dolly": 1.2,
+  "pivot": [
+   0.5,
+   2.5,
+   1.0
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 45.0,
+   "width": 1184,
+   "height": 880
+  },
+  "B": {
+   "lens_mm": 45.0,
+   "width": 1184,
+   "height": 880
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.4,
+  "splat_render_s": 4.2,
+  "splat_vs_photo_at_A_psnr": 32.25,
+  "splat_vs_truth_seen_psnr": 16.81,
+  "splat_vs_truth_unseen_psnr": 10.66,
+  "fake_vs_truth_seen_psnr": 20.85,
+  "fake_vs_truth_unseen_psnr": 11.75,
+  "unseen_frac": 0.49
+ }
+}

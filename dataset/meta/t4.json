@@ -1,0 +1,36 @@
+{
+ "id": "t4",
+ "setting": "TEST 4/5: harbour yard with a buoy, sea marker, barrels, crates, ladder and a rock outcrop, hazy daylight",
+ "move": {
+  "orbit_deg": -45.0,
+  "rise": 0.9,
+  "dolly": 1.2,
+  "pivot": [
+   0.0,
+   6.5,
+   0.800000011920929
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 24.0,
+   "width": 1360,
+   "height": 768
+  },
+  "B": {
+   "lens_mm": 24.0,
+   "width": 1360,
+   "height": 768
+  }
+ },
+ "sharp": {
+  "sharp_s": 54.7,
+  "splat_render_s": 4.8,
+  "splat_vs_photo_at_A_psnr": 38.48,
+  "splat_vs_truth_seen_psnr": 22.8,
+  "splat_vs_truth_unseen_psnr": 19.74,
+  "fake_vs_truth_seen_psnr": 26.78,
+  "fake_vs_truth_unseen_psnr": 19.12,
+  "unseen_frac": 0.318
+ }
+}

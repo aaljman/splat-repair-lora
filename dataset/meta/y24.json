@@ -1,0 +1,36 @@
+{
+ "id": "y24",
+ "setting": "hotel lobby lounge: two day beds around a round marble coffee table under a chandelier, a carved screen, a low sideboard with a bronze sculpture, guests' luggage and a plant, warm evening light",
+ "move": {
+  "orbit_deg": -35.0,
+  "rise": 0.7,
+  "dolly": 0.9,
+  "pivot": [
+   0.0,
+   4.300000190734863,
+   1.0
+  ]
+ },
+ "cameras": {
+  "A": {
+   "lens_mm": 45.0,
+   "width": 1024,
+   "height": 1024
+  },
+  "B": {
+   "lens_mm": 45.0,
+   "width": 1024,
+   "height": 1024
+  }
+ },
+ "sharp": {
+  "sharp_s": 32.8,
+  "splat_render_s": 7.3,
+  "splat_vs_photo_at_A_psnr": 34.76,
+  "splat_vs_truth_seen_psnr": 15.23,
+  "splat_vs_truth_unseen_psnr": 14.31,
+  "fake_vs_truth_seen_psnr": 22.63,
+  "fake_vs_truth_unseen_psnr": 13.66,
+  "unseen_frac": 0.329
+ }
+}

@@ -19,6 +19,8 @@ SHARP turns one photo into a 3D Gaussian splat. Move the camera away from where 
 
 **[Download the LoRA](https://github.com/aaljman/splat-repair-lora/releases/download/v1.0/splat_repair_human_qwen21_e23.safetensors)** (`splat_repair_human_qwen21_e23.safetensors`, rank 8, alpha 8, 42 MB) from the [v1.0 release](https://github.com/aaljman/splat-repair-lora/releases/tag/v1.0) and put it in ComfyUI's `models/loras/`. It is also in the repo itself, so "Download ZIP" or a clone gets it too.
 
+Two more LoRAs, trained the same way on other caption styles, are in the repo for comparison: see [Caption styles](#caption-styles). The one above is the one to use.
+
 Each repair takes two images and a prompt:
 
 | Input | What it is |
@@ -83,16 +85,74 @@ Read these honestly:
 - With the same human prompt and no LoRA, the base model scores 17.06 / 17.92 dB on the test scenes. This LoRA is higher on all 5 test scenes, by 2.74 dB over the whole frame and 3.16 dB in the unseen region (95% interval 1.35 to 4.98), and SSIM is also higher on all 5 (0.546 vs 0.450). That is the cleanest measure of what the LoRA itself adds; it is still one seed on 5 scenes.
 - All scenes are synthetic (Blender + Poly Haven). Real photos have not been tested.
 
+These scores use one sampling seed. Over three seeds (next section) the picture is the same: +1.44 dB over SHARP's render in the unseen region (95% interval -0.11 to +2.98), level over the whole frame, and SSIM lower on all 15 scene-seed pairs; +3.33 dB over the base model with the same prompt in the unseen region (95% interval +1.06 to +5.60).
+
+## Caption styles
+
+Three LoRAs were trained on the same 38 pairs with the same settings. Only the training caption changed, so the prompt each one expects is different. The human-caption LoRA above is the one to use; the other two are here so the comparison can be checked.
+
+| LoRA | Trained with | Prompt it with | Epoch | File |
+| --- | --- | --- | ---: | --- |
+| **Human caption** | a short, plain description of what is broken or hidden and what should be there | the same kind of description, e.g. `examples/t2_prompt.txt` | 23 of 40 | [`splat_repair_human_qwen21_e23.safetensors`](https://github.com/aaljman/splat-repair-lora/releases/download/v1.0/splat_repair_human_qwen21_e23.safetensors) |
+| Detail caption | a long, object-by-object description of the whole scene: the camera move, every object, the lighting, and which areas were hidden or out of frame | the same kind of description, e.g. `examples/t2_prompt.detail.txt` (about 250 words) | 25 (run stopped at 37) | [`splat_repair_detail_qwen21_e25.safetensors`](splat_repair_detail_qwen21_e25.safetensors) |
+| Constant caption | the words `fix this` on every pair | exactly `fix this` | 6 of 16 | [`splat_repair_min_qwen21_e06.safetensors`](splat_repair_min_qwen21_e06.safetensors) |
+
+All three are rank 8, alpha 8, 42 MB, and use the same ComfyUI graph and settings; swap the `lora_name` in `workflow_api.json`. The constant-caption file keeps the trainer's `fix this` trigger in its header, because that really is its prompt; the other two have it removed.
+
+Each sheet, left to right: ground truth from Blender | SHARP's render | constant caption | detail caption | human caption. Sampling seed 1 on the test scenes.
+
+<p align="center"><img src="compare/captions_t1.jpg" alt="Test scene t1: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
+
+<p align="center"><img src="compare/captions_t2.jpg" alt="Test scene t2: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
+
+<p align="center"><img src="compare/captions_t3.jpg" alt="Test scene t3: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
+
+<p align="center"><img src="compare/captions_t4.jpg" alt="Test scene t4: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
+
+<p align="center"><img src="compare/captions_t5.jpg" alt="Test scene t5: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
+
+### Scores over three seeds
+
+Each LoRA was sampled with three seeds per scene; each cell averages the seeds per scene, then the scenes. PSNR in dB, whole frame / only the pixels the photo never saw; SSIM higher is better; LPIPS (VGG) and DISTS lower is better.
+
+| Method | Test PSNR | Test SSIM | Test LPIPS | Test DISTS | Validation PSNR | Validation LPIPS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| SHARP render (input) | 19.78 / 19.65 | 0.588 | 0.482 | 0.177 | 19.26 / 17.52 | 0.475 |
+| Qwen-Image-2.1, no LoRA, human prompt | 17.09 / 17.76 | 0.472 | 0.510 | 0.181 | 16.23 / 14.94 | 0.512 |
+| Constant caption, e6 | 19.09 / 20.26 | 0.522 | 0.432 | 0.131 | 18.66 / 17.72 | 0.402 |
+| Detail caption, e25 | **19.74** / 20.10 | 0.529 | 0.426 | 0.119 | 19.03 / 18.18 | 0.400 |
+| **Human caption, e23** | 19.63 / **21.09** | **0.545** | **0.397** | **0.118** | **19.53** / **18.66** | **0.382** |
+
+Paired on the test scenes. "Wins" counts scene-seed pairs (5 scenes x 3 seeds); the 95% interval is taken over the 5 scenes, each averaged over its seeds.
+
+| Human caption vs | Metric | Wins | Mean difference | 95% interval |
+| --- | --- | ---: | ---: | ---: |
+| Detail caption | PSNR, unseen | 12/15 | +0.99 dB | -0.24 to +2.22 |
+| Detail caption | PSNR, whole frame | 9/15 | -0.11 dB | -2.71 to +2.48 |
+| Detail caption | LPIPS | 12/15 | -0.029 | -0.085 to +0.026 |
+| Constant caption | PSNR, unseen | 10/15 | +0.83 dB | -0.20 to +1.85 |
+| Constant caption | PSNR, whole frame | 12/15 | +0.54 dB | -0.11 to +1.18 |
+| Constant caption | LPIPS | 14/15 | -0.035 | -0.059 to -0.011 |
+| Constant caption | DISTS | 14/15 | -0.014 | -0.021 to -0.007 |
+
+Read these honestly:
+
+- Of the three, the human caption is best or level on every measure, on both the test and the validation scenes. Against the detail caption, every interval includes zero, and the two are level over the whole frame (the detail caption is 0.11 dB ahead there). Against the constant caption, only the perceptual distances (LPIPS, DISTS) are clearly better.
+- The detail and constant captions are level with each other: within 0.2 dB in the unseen region and 0.65 dB over the whole frame, with intervals well across zero.
+- One training run per caption style, and 5 test scenes. The seed-to-seed standard deviation of a scene's PSNR is about 0.4 to 1.2 dB, about the size of the gaps between the styles.
+- The epochs were picked on the validation scenes, so the validation columns are optimistic. The runs were not the same length: constant 16 epochs (e6 picked), detail extended to 40 but stopped at 37 (e25 picked), human 40 (e23 picked).
+- The detail caption is a lot to ask of a user: it describes the camera move and every object, hidden ones included, so writing one takes knowing the scene well. The test captions were written the same way as the training captions; a user's own would likely be less accurate.
+
 ## Training
 
 1. **Base.** Qwen-Image-2.1 (unified generation and editing model).
 2. **Data.** 38 pairs from Blender scenes built from CC0 [Poly Haven](https://polyhaven.com) assets. Input = SHARP's actual render at a moved camera plus the photo; target = the true Blender render at that camera.
-3. **Captions.** Human-style descriptions of what needs fixing. This beat a detailed object-by-object caption and a constant "fix this" caption on the validation scenes (one seed each, so this ranking is preliminary).
+3. **Captions.** Human-style descriptions of what needs fixing. This beat a detailed object-by-object caption and a constant "fix this" caption on the validation scenes, and over three sampling seeds it is best or level on every measure on the test scenes too, though by margins within seed noise (see [Caption styles](#caption-styles)).
 4. **Trainer.** [Fizgig](https://github.com/shootthesound/Fizgig), Fast preset, AdamW 8-bit, rank 8. Epoch 23 of 40 was chosen on the validation scenes.
 
 ## Dataset
 
-`dataset/` holds all 47 scenes (Git LFS, about 223 MB):
+`dataset/` holds all 47 scenes (about 223 MB):
 
 | Folder | Contents |
 | --- | --- |

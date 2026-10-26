@@ -17,7 +17,7 @@ SHARP turns one photo into a 3D Gaussian splat. Move the camera away from where 
 
 ## Use
 
-File: `splat_repair_human_qwen21_e23.safetensors` (rank 8, alpha 8, 42 MB). Put it in ComfyUI's `models/loras/`.
+**[Download the LoRA](https://github.com/aaljman/splat-repair-lora/releases/download/v1.0/splat_repair_human_qwen21_e23.safetensors)** (`splat_repair_human_qwen21_e23.safetensors`, rank 8, alpha 8, 42 MB) from the [v1.0 release](https://github.com/aaljman/splat-repair-lora/releases/tag/v1.0) and put it in ComfyUI's `models/loras/`. GitHub's "Download ZIP" button only fetches small placeholder files for the LoRA and the dataset images, so use the release link (or `git lfs pull` after cloning).
 
 Each repair takes two images and a prompt:
 

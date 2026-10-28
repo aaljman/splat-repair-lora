@@ -221,4 +221,4 @@ The test split is `t1` to `t5`, the validation split is `x001`, `y05`, `y18` and
 
 ## Licence
 
-The LoRAs derive from **Qwen-Image-2.1**, which the [Qwen Research License Agreement](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE) covers, so their use falls under those terms (research use). The dataset is for research use only, because it contains SHARP renders under Apple's research licence. The `comfyui-gaussian-viewer/` folder is GPL-3.0-or-later, like the original node.
+The LoRAs derive from **Qwen-Image-2.1**, which the [Qwen Research License Agreement](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE) covers, so their use falls under those terms (research use). The dataset is for research use only, because it contains SHARP renders under Apple's research licence. The `comfyui-gaussian-viewer/` folder is under the MIT licence.

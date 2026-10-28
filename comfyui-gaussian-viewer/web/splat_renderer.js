@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2025 ComfyUI-GaussianViewer Contributors
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 aaljman
 //
 // WebGL2 Gaussian-splat renderer (3DGS EWA splatting). One instanced quad per splat, read from the
 // worker's packed texture in the worker's back-to-front order. Splats are blended in linear light

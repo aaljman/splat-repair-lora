@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: GPL-3.0-or-later
-# Copyright (C) 2025 ComfyUI-GaussianViewer Contributors
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 aaljman
 
 """Interactive Gaussian-splat viewer node for ComfyUI that outputs the chosen view."""
 

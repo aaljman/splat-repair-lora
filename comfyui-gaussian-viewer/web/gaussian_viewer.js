@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2025 ComfyUI-GaussianViewer Contributors
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 aaljman
 //
 // The GaussianViewer node's frontend: a splat view inside the node, orbit / pan / fly controls,
 // and Set Camera, which stores the camera in the node's hidden `camera` widget. When the node runs

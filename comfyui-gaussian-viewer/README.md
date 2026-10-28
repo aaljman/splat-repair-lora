@@ -117,4 +117,4 @@ pyproject.toml         Comfy Registry metadata
 
 ## Credits and licence
 
-This pack is based on [CarlMarkswx/comfyui-GaussianViewer](https://github.com/CarlMarkswx/comfyui_GaussianViewer). Thanks to its authors for the original node and its idea. The rebuild is GPL-3.0-or-later, like the original (see `LICENSE`). That licence covers this folder only. The LoRAs and the dataset in the rest of the repository have their own terms.
+This pack is based on [CarlMarkswx/comfyui-GaussianViewer](https://github.com/CarlMarkswx/comfyui_GaussianViewer). Thanks to its authors for the original node and its idea. The original is GPL-3.0. This rebuild shares no code with it beyond the node and output names kept for compatibility, and it is released under the MIT licence (see `LICENSE`). That licence covers this folder only. The LoRAs and the dataset in the rest of the repository have their own terms.

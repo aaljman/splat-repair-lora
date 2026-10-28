@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2025 ComfyUI-GaussianViewer Contributors
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 aaljman
 //
 // Web worker: downloads and parses a Gaussian-splat PLY into the renderer's texture layout, then
 // depth-sorts the splats for every new camera. ComfyUI also imports every .js file in web/ as an

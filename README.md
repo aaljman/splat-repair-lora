@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="docs/hero.jpg" alt="A cabinet table on a herringbone brick floor, in four panels. Left to right: the input photo; SHARP's render from a moved camera, with a grey block and smears where the photo saw nothing; the same view repaired by this LoRA, with the floor filled in and a small wooden stool beside the table; and the true Blender render of that view." width="100%">
+  <img src="docs/hero_v11.jpg" alt="The GaussianViewer node in ComfyUI showing a SHARP splat of a cabinet table from a moved camera, next to four panels of that view: SHARP's render with holes, the constant-caption LoRA's repair (prompt 'fix this'), the human-caption LoRA's repair, and the true Blender render." width="100%">
 </p>
-<p align="center"><sub>Test scene t2, which was not used for any training or selection decision.</sub></p>
+<p align="center"><sub>Test scene t2. No training run or selection step used it.</sub></p>
 
 # Splat-repair LoRA
 
@@ -9,19 +9,27 @@ A LoRA for [Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1) that rep
 
 It fills holes and smears in the parts of the view the photo never saw, using the original photo as a reference.
 
-Made by Abdulaziz Aljman for a COMP90044 Research Methods project at the University of Melbourne (October 2026).
+This repository also has a ComfyUI node for choosing that far view, [GaussianViewer (rebuild)](comfyui-gaussian-viewer/). It is based on CarlMarkswx's GaussianViewer, and you can install it from ComfyUI Manager.
 
 ## Why
 
-SHARP turns one photo into a 3D Gaussian splat. Move the camera away from where the photo was taken and the parts the photo never saw come out as holes and smears. An image-edit model can paint them back in: [dx8152's Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash) LoRA showed that, and it was the starting point for this project. This LoRA does the same job on Qwen-Image-2.1, trained on SHARP's actual renders paired with the true view from Blender.
+SHARP turns one photo into a 3D Gaussian splat. Move the camera away from where the photo was taken, and the parts the photo never saw come out as holes and smears. An image-edit model can paint them back in. [dx8152's Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash) LoRA showed that, and it was the starting point for this project. This LoRA does the same job on Qwen-Image-2.1. It was trained on SHARP's actual renders, each paired with the true view from Blender.
 
 ## Use
 
-**[Download the LoRA](https://github.com/aaljman/splat-repair-lora/releases/download/v1.0/splat_repair_human_qwen21_e23.safetensors)** (`splat_repair_human_qwen21_e23.safetensors`, rank 8, alpha 8, 42 MB) from the [v1.0 release](https://github.com/aaljman/splat-repair-lora/releases/tag/v1.0) and put it in ComfyUI's `models/loras/`. It is also in the repo itself, so "Download ZIP" or a clone gets it too.
+**[Download the LoRA](https://github.com/aaljman/splat-repair-lora/releases/download/v1.1/splat_repair_human_qwen21_e23.safetensors)** (`splat_repair_human_qwen21_e23.safetensors`, rank 8, alpha 8, 42 MB) from the [v1.1 release](https://github.com/aaljman/splat-repair-lora/releases/tag/v1.1) and put it in ComfyUI's `models/loras/`. The file is also in the repo, so "Download ZIP" or a clone gets it too.
 
-Two more LoRAs, trained the same way on other caption styles, are in the repo for comparison: see [Caption styles](#caption-styles). The one above is the one to use.
+There are three LoRAs. They share the same training pairs and settings, and only the training caption differs, so each one expects its own kind of prompt.
 
-Each repair takes two images and a prompt:
+| LoRA | What you type |
+| --- | --- |
+| **Human caption** (use this one) | a short, plain description of what is broken or hidden and what should be there |
+| Detail caption | a long (about 300 words) object-by-object description of the whole scene |
+| Constant caption | just `fix this` |
+
+The other two exist to measure how much the prompt matters. The human caption is best or level on every measure. [Caption styles](#caption-styles) explains why there are three and has the comparison sheets and the scores.
+
+Each repair takes two images and a prompt.
 
 | Input | What it is |
 | --- | --- |
@@ -29,13 +37,13 @@ Each repair takes two images and a prompt:
 | **Image 2** | the original photo |
 | **Prompt** | a short, plain description of what the hidden or broken parts should look like (see `examples/`) |
 
-The prompt for the scene at the top, from `examples/t2_prompt.txt`:
+This is the prompt for the scene at the top, from `examples/t2_prompt.txt`:
 
 > The right end of the cabinet table and the floor behind it got smeared. There's a little rustic wooden stool with an orange-brown top just past the table's right end, and the herringbone brick floor and pale blue walls carry on around it and on the left side of the room.
 
 ### ComfyUI
 
-`workflow_api.json` is the API-format graph used for every result below. Load the two images and write the prompt.
+`workflow_api.json` is the API-format graph behind every result below. Load the two images and write the prompt.
 
 | Setting | Value |
 | --- | --- |
@@ -44,13 +52,41 @@ The prompt for the scene at the top, from `examples/t2_prompt.txt`:
 | Sampler / scheduler | euler / simple |
 | LoRA strength | 1.0 |
 
-It expects the Qwen-Image-2.1 nodes (`TextEncodeQwenImage21`, `QwenImage21Cache`) and the int8 model files named in the graph; swap in your own model files as needed.
+The graph needs the Qwen-Image-2.1 nodes (`TextEncodeQwenImage21`, `QwenImage21Cache`) and names int8 model files. Swap in your own model files as needed.
+
+### Picking the far view in ComfyUI
+
+<p align="center"><img src="docs/node/example.jpg" alt="Three panels: the input photo; the view the node outputs from the set camera, with holes where the photo saw nothing; and the node's mask, white where the splat left a hole." width="100%"></p>
+
+The [GaussianViewer (rebuild)](comfyui-gaussian-viewer/) node makes Image 1. Feed it SHARP's PLY, extrinsics and intrinsics from [ComfyUI-Sharp](https://github.com/PozzettiAndrea/ComfyUI-Sharp). Orbit the splat inside the node, press **Set Camera**, and queue again. The node outputs that view at the photo's resolution, with a hole mask and the camera matrices.
+
+It is a from-scratch rebuild of [CarlMarkswx/comfyui-GaussianViewer](https://github.com/CarlMarkswx/comfyui_GaussianViewer). It has its own WebGL2 renderer and parses the PLY in a background worker, in 199 ms against the original's 663 ms for a 1.18M-splat file. The workflow saves its camera. It keeps the original's node name and inputs, so disable the original before you install it.
+
+To install it, pick one:
+
+- In ComfyUI Manager, search for **GaussianViewer (rebuild)**.
+- Run `comfy node install gaussian-viewer-rebuild`.
+- Unpack `comfyui-gaussian-viewer-2.0.0.zip` from the [v1.1 release](https://github.com/aaljman/splat-repair-lora/releases/tag/v1.1) into `ComfyUI/custom_nodes/`.
+
+The node's [README](comfyui-gaussian-viewer/README.md) lists the controls, the outputs and the changes from the original.
+
+The pack also has a **Fill Splat Holes** node. It fills the holes by smearing in the surrounding colours (push-pull), the same fill the training inputs got. On the dataset renders its output matches the training fill pixel for pixel, so put it between GaussianViewer and the LoRA.
+
+### Full workflow on a real photo
+
+<p align="center"><img src="docs/person_workflow.jpg" alt="A ComfyUI workflow in three groups: a CC0 photo of a man against a tiled wall goes through SHARP; GaussianViewer shows the splat from a camera turned 40 degrees, with holes, and Fill Splat Holes fills them; two branches repair the view, one with the constant-caption LoRA and prompt 'fix this', one with the human-caption LoRA and a written description, and both results show the man from the new angle with the wall filled in." width="100%"></p>
+
+[`workflow_photo_to_repair.json`](workflow_photo_to_repair.json) is the whole pipeline in one graph: photo, SHARP, GaussianViewer, Fill Splat Holes, then both LoRAs side by side. Drag it onto the ComfyUI canvas, and put [`examples/man_standing_alone_cc0.png`](examples/man_standing_alone_cc0.png) in ComfyUI's `input/` folder to run it as shown. The human-caption prompt is in [`examples/man_standing_alone_prompt.txt`](examples/man_standing_alone_prompt.txt). It needs ComfyUI-Sharp, this repository's node pack, the Qwen-Image-2.1 files and the LoRAs.
+
+<p align="center"><img src="docs/person_compare.jpg" alt="Five panels of the same man against a tiled wall: the CC0 photo; SHARP's render from a camera turned 40 degrees, with a black gap on the left and smears beside him; the previous setup's output, which moves him to the right of the frame; and the two LoRAs' outputs, which keep the new angle and fill the wall." width="100%"></p>
+
+The photo is a real one, so there is no ground truth and no score. It is one example, not a test. Both LoRAs keep the turned camera and fill the wall. The previous setup (Qwen-Image-Edit-2511 with the Gaussian-Splash LoRA, run the same way as in [the comparison below](#compared-with-the-previous-lora)) re-frames the shot and moves the man to the right of the frame.
 
 ## Compared with the previous LoRA
 
-The baseline is the configuration used before this project: Qwen-Image-Edit-2511 with **[dx8152/Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash)** (Apache-2.0), 4-step Lightning sampling and that LoRA's default prompt. That LoRA was the starting point for this idea: it showed that an image-edit model can repair SHARP renders. All credit for it goes to dx8152.
+The baseline is the setup used before this project: Qwen-Image-Edit-2511 with **[dx8152/Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash)** (Apache-2.0), 4-step Lightning sampling and that LoRA's default prompt. That LoRA was the starting point for this idea, because it showed that an image-edit model can repair SHARP renders. All credit for it goes to dx8152.
 
-Each sheet, left to right: ground truth from Blender | SHARP's render | previous configuration | this LoRA. Test scenes t1-t5 were not used for any training or selection decision.
+Each sheet shows, left to right, the Blender ground truth, SHARP's render, the previous setup and this LoRA. No training run or selection step used test scenes t1 to t5.
 
 <p align="center"><img src="compare/t1.jpg" alt="Test scene t1: ground truth, SHARP render, previous configuration, this LoRA." width="100%"></p>
 
@@ -62,11 +98,11 @@ Each sheet, left to right: ground truth from Blender | SHARP's render | previous
 
 <p align="center"><img src="compare/t5.jpg" alt="Test scene t5: ground truth, SHARP render, previous configuration, this LoRA." width="100%"></p>
 
-Validation scenes (these were used to pick the epoch and caption style, so their scores are optimistic): [x001](compare/x001.jpg), [y05](compare/y05.jpg), [y18](compare/y18.jpg), [y31](compare/y31.jpg).
+The validation scenes decided the epoch and the caption style, so their scores are optimistic. They are [x001](compare/x001.jpg), [y05](compare/y05.jpg), [y18](compare/y18.jpg) and [y31](compare/y31.jpg).
 
 ## Scores
 
-PSNR in dB against the true Blender view, whole frame / only the pixels the photo never saw. Higher is better.
+PSNR is in dB against the true Blender view, given as whole frame / only the pixels the photo never saw. Higher is better.
 
 | Scene | SHARP render | Previous (2511 + Gaussian-Splash) | Qwen-Image-2.1, no LoRA, detailed prompt | Qwen-Image-2.1, no LoRA, same prompt | This LoRA |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -78,28 +114,36 @@ PSNR in dB against the true Blender view, whole frame / only the pixels the phot
 | **mean, test** | **19.78 / 19.65** | **17.90 / 18.95** | **16.36 / 16.52** | **17.06 / 17.92** | **19.80 / 21.08** |
 | mean, validation | 19.26 / 17.52 | 16.43 / 15.28 | 15.87 / 15.52 | 15.84 / 14.97 | 19.68 / 18.76 |
 
-Read these honestly:
+How to read these:
 
-- One training seed and one sampling seed per scene, on 5 test scenes. In the unseen region this LoRA is +1.43 dB over SHARP's render (4 of 5 scenes), but the 95% interval (-0.03 to +2.89 dB) includes zero. Over the whole frame it is level with SHARP's render, and SSIM is lower on every scene.
-- Against the previous configuration it has higher PSNR on all 9 scenes. That comparison changes the base model, the LoRA, the step count and the prompt all at once, so it compares two setups, not two LoRAs. The previous configuration was also fed a hole-filled version of the SHARP render.
-- With the same human prompt and no LoRA, the base model scores 17.06 / 17.92 dB on the test scenes. This LoRA is higher on all 5 test scenes, by 2.74 dB over the whole frame and 3.16 dB in the unseen region (95% interval 1.35 to 4.98), and SSIM is also higher on all 5 (0.546 vs 0.450). That is the cleanest measure of what the LoRA itself adds; it is still one seed on 5 scenes.
-- All scenes are synthetic (Blender + Poly Haven). Real photos have not been tested.
+- This table uses one training seed and one sampling seed per scene, on 5 test scenes. In the unseen region this LoRA is +1.43 dB over SHARP's render (4 of 5 scenes), but the 95% interval (-0.03 to +2.89 dB) includes zero. Over the whole frame it is level with SHARP's render, and SSIM is lower on every scene.
+- It has higher PSNR than the previous setup on all 9 scenes. That comparison changes the base model, the LoRA, the step count and the prompt all at once, so it compares two setups, not two LoRAs. The previous setup also got a hole-filled version of the SHARP render.
+- With the same human prompt and no LoRA, the base model scores 17.06 / 17.92 dB on the test scenes. This LoRA is higher on all 5 test scenes, by 2.74 dB over the whole frame and 3.16 dB in the unseen region (95% interval 1.35 to 4.98). SSIM is also higher on all 5 (0.546 vs 0.450). That is the cleanest measure of what the LoRA itself adds, though it is still one seed on 5 scenes.
+- All scored scenes are synthetic (Blender and Poly Haven). The one real photo above has no ground truth, so it has no score.
 
-These scores use one sampling seed. Over three seeds (next section) the picture is the same: +1.44 dB over SHARP's render in the unseen region (95% interval -0.11 to +2.98), level over the whole frame, and SSIM lower on all 15 scene-seed pairs; +3.33 dB over the base model with the same prompt in the unseen region (95% interval +1.06 to +5.60).
+Three sampling seeds (next section) give the same picture. In the unseen region this LoRA is +1.44 dB over SHARP's render (95% interval -0.11 to +2.98) and +3.33 dB over the base model with the same prompt (95% interval +1.06 to +5.60). It is level with SHARP's render over the whole frame, and its SSIM is lower on all 15 scene-seed pairs.
 
 ## Caption styles
 
-Three LoRAs were trained on the same 38 pairs with the same settings. Only the training caption changed, so the prompt each one expects is different. The human-caption LoRA above is the one to use; the other two are here so the comparison can be checked.
+The three LoRAs share the same 38 training pairs and the same settings. Only the training caption changed, so each one expects a different prompt. The human-caption LoRA above is the one to use. The other two are here so anyone can check the comparison.
+
+The three captions measure how much of the repair comes from the prompt.
+
+- **Constant caption.** The text carries no information, so the LoRA learns everything from the two images.
+- **Human caption.** This is what a user would type.
+- **Detail caption.** It says close to everything text can say about the scene. At 295 words on average against 46, it is about six times as long as a human caption, so it shows whether more text keeps helping.
+
+The scores below answer it. A short description beats `fix this` on the perceptual measures (LPIPS and DISTS), and by 0.8 dB PSNR on the pixels the photo never saw, though that interval crosses zero. Six times more text adds nothing measurable over the short description.
 
 | LoRA | Trained with | Prompt it with | Epoch | File |
 | --- | --- | --- | ---: | --- |
-| **Human caption** | a short, plain description of what is broken or hidden and what should be there | the same kind of description, e.g. `examples/t2_prompt.txt` | 23 of 40 | [`splat_repair_human_qwen21_e23.safetensors`](https://github.com/aaljman/splat-repair-lora/releases/download/v1.0/splat_repair_human_qwen21_e23.safetensors) |
-| Detail caption | a long, object-by-object description of the whole scene: the camera move, every object, the lighting, and which areas were hidden or out of frame | the same kind of description, e.g. `examples/t2_prompt.detail.txt` (about 250 words) | 25 (run stopped at 37) | [`splat_repair_detail_qwen21_e25.safetensors`](splat_repair_detail_qwen21_e25.safetensors) |
-| Constant caption | the words `fix this` on every pair | exactly `fix this` | 6 of 16 | [`splat_repair_min_qwen21_e06.safetensors`](splat_repair_min_qwen21_e06.safetensors) |
+| **Human caption** | a short, plain description of what is broken or hidden and what should be there | the same kind of description, e.g. `examples/t2_prompt.txt` | 23 of 40 | [`splat_repair_human_qwen21_e23.safetensors`](https://github.com/aaljman/splat-repair-lora/releases/download/v1.1/splat_repair_human_qwen21_e23.safetensors) |
+| Detail caption | a long, object-by-object description of the whole scene: the camera move, every object, the lighting, and which areas were hidden or out of frame | the same kind of description, e.g. `examples/t2_prompt.detail.txt` (about 300 words) | 25 (run stopped at 37) | [`splat_repair_detail_qwen21_e25.safetensors`](https://github.com/aaljman/splat-repair-lora/releases/download/v1.1/splat_repair_detail_qwen21_e25.safetensors) |
+| Constant caption | the words `fix this` on every pair | exactly `fix this` | 6 of 16 | [`splat_repair_min_qwen21_e06.safetensors`](https://github.com/aaljman/splat-repair-lora/releases/download/v1.1/splat_repair_min_qwen21_e06.safetensors) |
 
-All three are rank 8, alpha 8, 42 MB, and use the same ComfyUI graph and settings; swap the `lora_name` in `workflow_api.json`. The constant-caption file keeps the trainer's `fix this` trigger in its header, because that really is its prompt; the other two have it removed.
+All three are rank 8, alpha 8 and 42 MB, and they use the same ComfyUI graph and settings. Change the `lora_name` in `workflow_api.json` to switch. The constant-caption file keeps the trainer's `fix this` trigger in its header, because that is its prompt. The other two have it removed.
 
-Each sheet, left to right: ground truth from Blender | SHARP's render | constant caption | detail caption | human caption. Sampling seed 1 on the test scenes.
+Each sheet shows, left to right, the Blender ground truth, SHARP's render, then the constant, detail and human-caption LoRAs. They use sampling seed 1 on the test scenes.
 
 <p align="center"><img src="compare/captions_t1.jpg" alt="Test scene t1: ground truth, SHARP render, constant-caption LoRA, detail-caption LoRA, human-caption LoRA." width="100%"></p>
 
@@ -113,7 +157,7 @@ Each sheet, left to right: ground truth from Blender | SHARP's render | constant
 
 ### Scores over three seeds
 
-Each LoRA was sampled with three seeds per scene; each cell averages the seeds per scene, then the scenes. PSNR in dB, whole frame / only the pixels the photo never saw; SSIM higher is better; LPIPS (VGG) and DISTS lower is better.
+Each LoRA ran with three sampling seeds per scene. Each cell averages the seeds per scene, then averages the scenes. PSNR is in dB, given as whole frame / only the pixels the photo never saw. Higher is better for PSNR and SSIM, lower for LPIPS (VGG) and DISTS.
 
 | Method | Test PSNR | Test SSIM | Test LPIPS | Test DISTS | Validation PSNR | Validation LPIPS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -123,7 +167,7 @@ Each LoRA was sampled with three seeds per scene; each cell averages the seeds p
 | Detail caption, e25 | **19.74** / 20.10 | 0.529 | 0.426 | 0.119 | 19.03 / 18.18 | 0.400 |
 | **Human caption, e23** | 19.63 / **21.09** | **0.545** | **0.397** | **0.118** | **19.53** / **18.66** | **0.382** |
 
-Paired on the test scenes. "Wins" counts scene-seed pairs (5 scenes x 3 seeds); the 95% interval is taken over the 5 scenes, each averaged over its seeds.
+The next table pairs the human caption with each other style on the test scenes. "Wins" counts scene-seed pairs (5 scenes × 3 seeds). The 95% interval is over the 5 scenes, each averaged over its seeds.
 
 | Human caption vs | Metric | Wins | Mean difference | 95% interval |
 | --- | --- | ---: | ---: | ---: |
@@ -135,24 +179,24 @@ Paired on the test scenes. "Wins" counts scene-seed pairs (5 scenes x 3 seeds); 
 | Constant caption | LPIPS | 14/15 | -0.035 | -0.059 to -0.011 |
 | Constant caption | DISTS | 14/15 | -0.014 | -0.021 to -0.007 |
 
-Read these honestly:
+How to read these:
 
-- Of the three, the human caption is best or level on every measure, on both the test and the validation scenes. Against the detail caption, every interval includes zero, and the two are level over the whole frame (the detail caption is 0.11 dB ahead there). Against the constant caption, only the perceptual distances (LPIPS, DISTS) are clearly better.
-- The detail and constant captions are level with each other: within 0.2 dB in the unseen region and 0.65 dB over the whole frame, with intervals well across zero.
-- One training run per caption style, and 5 test scenes. The seed-to-seed standard deviation of a scene's PSNR is about 0.4 to 1.2 dB, about the size of the gaps between the styles.
-- The epochs were picked on the validation scenes, so the validation columns are optimistic. The runs were not the same length: constant 16 epochs (e6 picked), detail extended to 40 but stopped at 37 (e25 picked), human 40 (e23 picked).
-- The detail caption is a lot to ask of a user: it describes the camera move and every object, hidden ones included, so writing one takes knowing the scene well. The test captions were written the same way as the training captions; a user's own would likely be less accurate.
+- Of the three, the human caption is best or level on every measure, on both the test and the validation scenes. Against the detail caption every interval includes zero, and the two are level over the whole frame (the detail caption is 0.11 dB ahead there). Against the constant caption only the perceptual distances (LPIPS, DISTS) are clearly better.
+- The detail and constant captions are level with each other. They are within 0.2 dB in the unseen region and 0.65 dB over the whole frame, with intervals well across zero.
+- There was one training run per caption style, and there are 5 test scenes. A scene's PSNR has a seed-to-seed standard deviation of about 0.4 to 1.2 dB, about the size of the gaps between the styles.
+- The epochs were picked on the validation scenes, so the validation columns are optimistic. The runs also differ in length. Constant ran 16 epochs (e6 picked), detail was extended to 40 but stopped at 37 (e25 picked), and human ran 40 (e23 picked).
+- A detail caption is a lot to ask of a user. It describes the camera move and every object, hidden ones included, so writing one takes knowing the scene well. The test captions follow the same method as the training captions, and a user's own would likely be less accurate.
 
 ## Training
 
 1. **Base.** Qwen-Image-2.1 (unified generation and editing model).
-2. **Data.** 38 pairs from Blender scenes built from CC0 [Poly Haven](https://polyhaven.com) assets. Input = SHARP's actual render at a moved camera plus the photo; target = the true Blender render at that camera.
-3. **Captions.** Human-style descriptions of what needs fixing. This beat a detailed object-by-object caption and a constant "fix this" caption on the validation scenes, and over three sampling seeds it is best or level on every measure on the test scenes too, though by margins within seed noise (see [Caption styles](#caption-styles)).
-4. **Trainer.** [Fizgig](https://github.com/shootthesound/Fizgig), Fast preset, AdamW 8-bit, rank 8. Epoch 23 of 40 was chosen on the validation scenes.
+2. **Data.** 38 pairs from Blender scenes built from CC0 [Poly Haven](https://polyhaven.com) assets. The input is SHARP's actual render at a moved camera plus the photo. The target is the true Blender render at that camera.
+3. **Captions.** Human-style descriptions of what needs fixing. This style beat a detailed object-by-object caption and a constant "fix this" caption on the validation scenes. Over three sampling seeds it is best or level on every measure on the test scenes too, though by margins within seed noise (see [Caption styles](#caption-styles)).
+4. **Trainer.** [Fizgig](https://github.com/shootthesound/Fizgig), Fast preset, AdamW 8-bit, rank 8. Epoch 23 of 40 won on the validation scenes.
 
 ## Dataset
 
-`dataset/` holds all 47 scenes (about 223 MB):
+`dataset/` holds all 47 scenes (about 223 MB).
 
 | Folder | Contents |
 | --- | --- |
@@ -164,15 +208,17 @@ Read these honestly:
 | `meta/` | per-scene settings, camera move and SHARP scores |
 | `captions/` | `<id>.human.txt`, `<id>.detail.txt` and the constant caption |
 
-Splits: test `t1`-`t5`; validation `x001`, `y05`, `y18`, `y31`; every other scene is training. Scene specifications were drafted by language-model agents and have not been hand-checked. The SHARP renders are covered by Apple's research licence, so the dataset is for research use only.
+The test split is `t1` to `t5`, the validation split is `x001`, `y05`, `y18` and `y31`, and every other scene is for training. Language-model agents drafted the scene specifications, and nobody has checked them by hand. Apple's research licence covers the SHARP renders, so the dataset is for research use only.
 
 ## Credits
 
-- **Previous configuration and inspiration:** **dx8152**, [Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash); 4-step sampling from [lightx2v Qwen-Image-Edit-2511-Lightning](https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning).
-- **SHARP** by Apple ([apple/ml-sharp](https://github.com/apple/ml-sharp); Mescheder et al., ICLR 2026). Training inputs were produced with it, under its own research licence.
-- **Scene assets:** [Poly Haven](https://polyhaven.com), CC0.
-- **Trainer:** [Fizgig](https://github.com/shootthesound/Fizgig) by shootthesound.
+- dx8152's [Qwen-Image-Edit-2511-Gaussian-Splash](https://huggingface.co/dx8152/Qwen-Image-Edit-2511-Gaussian-Splash) was the previous setup and the inspiration. Its 4-step sampling came from [lightx2v Qwen-Image-Edit-2511-Lightning](https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning).
+- Apple's SHARP ([apple/ml-sharp](https://github.com/apple/ml-sharp); Mescheder et al., ICLR 2026) produced the training inputs, under its own research licence.
+- [Poly Haven](https://polyhaven.com) supplied the scene assets (CC0).
+- The real-photo example is "[Man Standing Alone](https://commons.wikimedia.org/wiki/File:Man_Standing_Alone_(Unsplash).jpg)" from Unsplash, CC0 via Wikimedia Commons, cropped to 1184 × 800.
+- [Fizgig](https://github.com/shootthesound/Fizgig) by shootthesound trained the LoRAs.
+- [CarlMarkswx/comfyui-GaussianViewer](https://github.com/CarlMarkswx/comfyui_GaussianViewer) is the original viewer node that `comfyui-gaussian-viewer/` rebuilds.
 
 ## Licence
 
-This LoRA is derived from **Qwen-Image-2.1**, which is released under the [Qwen Research License Agreement](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE). Use of this LoRA is subject to those terms (research use). The dataset is for research use only, because the SHARP renders in it are covered by Apple's research licence.
+The LoRAs derive from **Qwen-Image-2.1**, which the [Qwen Research License Agreement](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE) covers, so their use falls under those terms (research use). The dataset is for research use only, because it contains SHARP renders under Apple's research licence. The `comfyui-gaussian-viewer/` folder is GPL-3.0-or-later, like the original node.

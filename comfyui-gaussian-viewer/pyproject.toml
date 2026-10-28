@@ -1,0 +1,16 @@
+[project]
+name = "gaussian-viewer-rebuild"
+description = "Orbit a Gaussian-splat PLY (for example SHARP's) inside the node, set a camera, and output that view at full resolution with a hole mask and the camera matrices, plus a push-pull hole fill. A from-scratch rebuild of CarlMarkswx's ComfyUI GaussianViewer: own WebGL2 renderer, PLY loading in a worker, camera saved in the workflow."
+version = "2.0.0"
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/aaljman/splat-repair-lora"
+Documentation = "https://github.com/aaljman/splat-repair-lora/tree/main/comfyui-gaussian-viewer"
+"Bug Tracker" = "https://github.com/aaljman/splat-repair-lora/issues"
+
+[tool.comfy]
+PublisherId = "aaljman"
+DisplayName = "GaussianViewer (rebuild)"
+Icon = ""

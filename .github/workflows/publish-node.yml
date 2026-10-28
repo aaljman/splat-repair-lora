@@ -1,0 +1,43 @@
+name: Publish GaussianViewer to the Comfy Registry
+
+# The node lives in comfyui-gaussian-viewer/. `comfy node publish` packs only the
+# git-tracked files under the folder it runs in, so the LoRAs and the dataset
+# are not uploaded. Bump `version` in its pyproject.toml to publish a new version.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "comfyui-gaussian-viewer/pyproject.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  publish-node:
+    name: Publish custom node to the registry
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'aaljman' }}
+    defaults:
+      run:
+        working-directory: comfyui-gaussian-viewer
+    steps:
+      - name: Check out the node folder only
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: comfyui-gaussian-viewer/
+          sparse-checkout-cone-mode: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install comfy-cli
+        run: pip install comfy-cli
+      - name: Publish
+        env:
+          REGISTRY_ACCESS_TOKEN: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+        run: |
+          comfy --skip-prompt --no-enable-telemetry env
+          comfy node publish --token "$REGISTRY_ACCESS_TOKEN"
